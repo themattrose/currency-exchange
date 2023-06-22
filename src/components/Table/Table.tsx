@@ -7,6 +7,7 @@ import {
   StyledTableRow,
 } from "./design";
 import type { TableProps } from "./types";
+import { Placeholder } from "../ConversionHistory/design";
 
 const Table = <T extends object>({ columns, rows, actions }: TableProps<T>) => {
   return (
@@ -21,20 +22,36 @@ const Table = <T extends object>({ columns, rows, actions }: TableProps<T>) => {
           </StyledTableRow>
         </StyledTableHead>
         <StyledTableBody>
-          {rows?.map((row, rowIndex) => (
-            <StyledTableRow key={JSON.stringify(row)}>
-              {columns.map(({ name, accessor, renderCell }) => (
-                <StyledTableCell key={name} component="td" scope="row">
-                  {renderCell ? renderCell(row) : accessor ? row[accessor] : ""}
-                </StyledTableCell>
-              ))}
-              {actions && (
-                <StyledTableCell component="td" scope="row">
-                  <div className="actions">{actions(row, rowIndex)}</div>
-                </StyledTableCell>
-              )}
+          {!!rows?.length ? (
+            rows?.map((row, rowIndex) => (
+              <StyledTableRow key={JSON.stringify(row)}>
+                {columns.map(({ name, accessor, renderCell }) => (
+                  <StyledTableCell key={name} component="td" scope="row">
+                    {renderCell
+                      ? renderCell(row)
+                      : accessor
+                      ? row[accessor]
+                      : ""}
+                  </StyledTableCell>
+                ))}
+                {actions && (
+                  <StyledTableCell component="td" scope="row">
+                    <div className="actions">{actions(row, rowIndex)}</div>
+                  </StyledTableCell>
+                )}
+              </StyledTableRow>
+            ))
+          ) : (
+            <StyledTableRow>
+              <StyledTableCell
+                colSpan={actions ? ++columns.length : columns.length}
+                component="td"
+                scope="row"
+              >
+                <Placeholder>No data available</Placeholder>
+              </StyledTableCell>
             </StyledTableRow>
-          ))}
+          )}
         </StyledTableBody>
       </StyledTable>
     </TableContainer>
