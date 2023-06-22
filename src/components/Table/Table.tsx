@@ -8,7 +8,7 @@ import {
 } from "./design";
 import type { TableProps } from "./types";
 
-const Table = <T extends object>({ columns, rows }: TableProps<T>) => {
+const Table = <T extends object>({ columns, rows, actions }: TableProps<T>) => {
   return (
     <TableContainer component={Paper}>
       <StyledTable>
@@ -17,16 +17,22 @@ const Table = <T extends object>({ columns, rows }: TableProps<T>) => {
             {columns.map(({ name }) => (
               <StyledTableCell key={name}>{name}</StyledTableCell>
             ))}
+            {actions && <StyledTableCell>Actions</StyledTableCell>}
           </StyledTableRow>
         </StyledTableHead>
         <StyledTableBody>
-          {rows?.map((row) => (
-            <StyledTableRow key={JSON.stringify(row)} sx={{}}>
-              {columns.map(({ name, accessor }) => (
-                <StyledTableCell key={name} component="th" scope="row">
-                  {row[accessor]}
+          {rows?.map((row, rowIndex) => (
+            <StyledTableRow key={JSON.stringify(row)}>
+              {columns.map(({ name, accessor, renderCell }) => (
+                <StyledTableCell key={name} component="td" scope="row">
+                  {renderCell ? renderCell(row) : accessor ? row[accessor] : ""}
                 </StyledTableCell>
               ))}
+              {actions && (
+                <StyledTableCell component="td" scope="row">
+                  <div className="actions">{actions(row, rowIndex)}</div>
+                </StyledTableCell>
+              )}
             </StyledTableRow>
           ))}
         </StyledTableBody>

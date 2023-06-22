@@ -2,6 +2,6 @@ import type { ReactNode } from "react";
 
 export interface TableColumn<T> {
   name?: string;
-  accessor: keyof T;
+  accessor?: keyof T;
   renderCell?: (data: T) => ReactNode;
 }

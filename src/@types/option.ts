@@ -1,4 +1,6 @@
-export interface Option {
+import { Currency } from "@/@enums/currencies";
+
+export interface Option<T extends Currency | number> {
   title: string;
-  value: string | number;
+  value: T;
 }

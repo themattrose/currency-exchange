@@ -12,6 +12,14 @@ export const StyledTable = styled(Table)``;
 
 export const StyledTableRow = styled(TableRow)`
   color: ${COLORS.TEXT_HEADER};
+
+  & .actions {
+    visibility: hidden;
+  }
+
+  &:hover .actions {
+    visibility: visible;
+  }
 `;
 
 export const StyledTableBody = styled(TableBody)`
@@ -23,7 +31,9 @@ export const StyledTableBody = styled(TableBody)`
   }
 `;
 
-export const StyledTableCell = styled(TableCell)``;
+export const StyledTableCell = styled(TableCell)`
+  font-size: 1rem;
+`;
 
 export const StyledTableHead = styled(TableHead)`
   ${StyledTableCell} {
