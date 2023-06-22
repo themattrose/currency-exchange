@@ -1,9 +1,9 @@
 import { PageUrl } from "@/@enums/pages";
 
-const TABS = [
+const NAV_ITEMS = [
   {
     label: "currency converter",
-    href: PageUrl.HOME,
+    href: PageUrl.CONVERTER,
   },
   {
     label: "view conversion history",
@@ -11,4 +11,4 @@ const TABS = [
   },
 ];
 
-export { TABS };
+export { NAV_ITEMS };
