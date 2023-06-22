@@ -2,5 +2,5 @@ export interface Conversion {
   date: string;
   from: string;
   to: string;
-  amount: number;
+  amount: string;
 }

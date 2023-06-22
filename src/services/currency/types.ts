@@ -3,7 +3,7 @@ import { Currency } from "@/@enums/currencies";
 export interface ConvertCurrencyRequest {
   from: Currency;
   to: Currency;
-  amount: number;
+  amount: string;
 }
 
 export interface ConvertCurrencyResponse {

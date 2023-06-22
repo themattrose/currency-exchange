@@ -1,5 +1,10 @@
 import { COLORS } from "@/constants/colors";
 import styled from "@emotion/styled";
+import { Container } from "@mui/material";
+
+export const StyledContainer = styled(Container)`
+  margin-bottom: 2rem;
+`;
 
 export const PageTitle = styled.h1`
   font-size: 3rem;
