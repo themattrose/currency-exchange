@@ -1,12 +1,14 @@
-import Head from "next/head";
+import { PageUrl } from "@/@enums/pages";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function Home() {
-  return (
-    <>
-      <Head>
-        <title>Currency Exchange</title>
-      </Head>
-      <div>Home</div>
-    </>
-  );
+  const { push } = useRouter();
+
+  useEffect(() => {
+    push(PageUrl.CONVERTER);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return <></>;
 }
