@@ -1,4 +1,4 @@
 export enum PageUrl {
-  HOME = "/",
+  CONVERTER = "/converter",
   HISTORY = "/history",
 }
