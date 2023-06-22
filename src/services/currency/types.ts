@@ -1,8 +1,8 @@
 import { Currency } from "@/@enums/currencies";
 
 export interface ConvertCurrencyRequest {
-  from: keyof typeof Currency;
-  to: keyof typeof Currency;
+  from: Currency;
+  to: Currency;
   amount: number;
 }
 
