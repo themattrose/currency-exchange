@@ -1,6 +1,7 @@
 import { Currency } from "@/@enums/currencies";
 import type { Statistic } from "@/@types";
 import type { GetTimeseriesResponse } from "@/services/timeseries/types";
+import { formatNumber } from "@/utils/amount";
 
 export const transformRateData = (
   data: GetTimeseriesResponse,
@@ -8,15 +9,18 @@ export const transformRateData = (
 ) => {
   return Object.entries(data.rates)
     .map(([key, value]) => {
-      return { date: key, value: value[symbol] || 0 };
+      return { date: key, value: value[symbol] };
     })
     .filter(({ value }) => value);
 };
 
 export const prepareStatisticsData = (values: number[]): Statistic[] => {
   return [
-    { title: "Lowest", value: Math.min(...values) },
-    { title: "Highest", value: Math.max(...values) },
-    { title: "Average", value: values.reduce((a, b) => a + b) / values.length },
+    { title: "Lowest", value: formatNumber(Math.min(...values)).toString() },
+    { title: "Highest", value: formatNumber(Math.max(...values)).toString() },
+    {
+      title: "Average",
+      value: formatNumber(values.reduce((a, b) => a + b) / values.length),
+    },
   ];
 };
