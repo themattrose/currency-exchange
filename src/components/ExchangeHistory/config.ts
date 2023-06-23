@@ -1,12 +1,13 @@
+import { DateFormat } from "@/@enums";
 import type { Statistic, TableColumn } from "@/@types";
 import type { Rate } from "@/@types";
-import format from "date-fns/format";
+import { formatDate } from "@/utils/date";
 
 export const RATES_COLUMNS: TableColumn<Rate>[] = [
   {
     name: "Date",
     accessor: "date",
-    renderCell: ({ date }) => format(new Date(date), "dd/MM/yyyy").toString(),
+    renderCell: ({ date }) => formatDate(date, DateFormat.DATE),
   },
   {
     name: "Exchange rate",

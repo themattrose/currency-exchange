@@ -27,14 +27,15 @@ const Converter = () => {
             label="Amount"
             variant="standard"
             type="number"
+            {...register("amount", { required: true, min: 1 })}
             autoFocus
-            {...register("amount", { required: true })}
           />
         </FieldWrapper>
         <FieldWrapper>
           <Controller
             name="from"
             control={control}
+            rules={{ required: true }}
             render={({ field: { onChange, value } }) => (
               <AutocompleteDropdown
                 onChange={onChange}
@@ -56,6 +57,7 @@ const Converter = () => {
           <Controller
             name="to"
             control={control}
+            rules={{ required: true }}
             render={({ field: { onChange, value } }) => (
               <AutocompleteDropdown
                 onChange={onChange}

@@ -3,9 +3,9 @@ import { type UseExchangeHistoryProps } from "./types";
 import { getTimeseries } from "@/services/timeseries";
 import type { Rate, Statistic } from "@/@types";
 import { prepareStatisticsData, transformRateData } from "./utils";
-import format from "date-fns/format";
 import subDays from "date-fns/subDays";
-import { View } from "@/@enums";
+import { DateFormat, View } from "@/@enums";
+import { formatDate } from "@/utils/date";
 
 const useExchangeHistory = ({ base, symbol }: UseExchangeHistoryProps) => {
   const [ratesData, setRatesData] = useState<Rate[]>([]);
@@ -15,11 +15,15 @@ const useExchangeHistory = ({ base, symbol }: UseExchangeHistoryProps) => {
 
   const fetchData = useCallback(async () => {
     try {
+      const newDate = new Date();
       const { data } = await getTimeseries({
         base,
         symbol,
-        startDate: format(subDays(new Date(), duration + 1), "yyyy-MM-dd"),
-        endDate: format(subDays(new Date(), 1), "yyyy-MM-dd"),
+        startDate: formatDate(
+          subDays(newDate, duration + 1),
+          DateFormat.DATE_WITH_DASH
+        ),
+        endDate: formatDate(subDays(newDate, 1), DateFormat.DATE_WITH_DASH),
       });
 
       const rates = transformRateData(data, symbol);
