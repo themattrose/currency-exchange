@@ -1,7 +1,7 @@
 import { COLORS } from "@/constants/colors";
 import styled from "@emotion/styled";
 import { Container, css } from "@mui/material";
-import { FlexRow } from "../UI";
+import { FlexRow } from "@/components/UI";
 
 export const Wrapper = styled(Container)`
   display: flex;

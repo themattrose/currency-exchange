@@ -7,7 +7,8 @@ import {
   StyledTableRow,
 } from "./design";
 import type { TableProps } from "./types";
-import { Placeholder } from "../ConversionHistory/design";
+import { Placeholder } from "./design";
+import { v4 as uuid } from "uuid";
 
 const Table = <T extends object>({ columns, rows, actions }: TableProps<T>) => {
   return (
@@ -16,7 +17,7 @@ const Table = <T extends object>({ columns, rows, actions }: TableProps<T>) => {
         <StyledTableHead>
           <StyledTableRow>
             {columns.map(({ name }) => (
-              <StyledTableCell key={name}>{name}</StyledTableCell>
+              <StyledTableCell key={uuid()}>{name}</StyledTableCell>
             ))}
             {actions && <StyledTableCell>Actions</StyledTableCell>}
           </StyledTableRow>
@@ -24,9 +25,9 @@ const Table = <T extends object>({ columns, rows, actions }: TableProps<T>) => {
         <StyledTableBody>
           {!!rows?.length ? (
             rows?.map((row, rowIndex) => (
-              <StyledTableRow key={JSON.stringify(row)}>
+              <StyledTableRow key={uuid()}>
                 {columns.map(({ name, accessor, renderCell }) => (
-                  <StyledTableCell key={name} component="td" scope="row">
+                  <StyledTableCell key={uuid()} component="td" scope="row">
                     {renderCell
                       ? renderCell(row)
                       : accessor

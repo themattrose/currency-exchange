@@ -41,3 +41,10 @@ export const StyledTableHead = styled(TableHead)`
     font-weight: 500;
   }
 `;
+
+export const Placeholder = styled.div`
+  text-align: center;
+  font-size: 1rem;
+  color: ${COLORS.TEXT_DEFAULT};
+  width: 100%;
+`;

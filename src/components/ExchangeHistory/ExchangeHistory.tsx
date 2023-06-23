@@ -14,7 +14,7 @@ import { FormControlLabel, Radio } from "@mui/material";
 import { AutocompleteDropdown } from "@/components/AutocompleteDropdown";
 import { DURATION_ITEMS, VIEW_ITEMS } from "@/constants";
 import { View } from "@/@enums";
-import { LineChart } from "../LineChart";
+import { LineChart } from "@/components/LineChart";
 import { COLORS } from "@/constants/colors";
 
 const ExchangeHistory = ({ base, symbol }: ExchangeHistoryProps) => {

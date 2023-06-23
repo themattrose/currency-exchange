@@ -16,10 +16,3 @@ export const StyledActions = styled.div`
   gap: 2.5rem;
   width: 11rem;
 `;
-
-export const Placeholder = styled.div`
-  text-align: center;
-  font-size: 1rem;
-  color: ${COLORS.TEXT_DEFAULT};
-  width: 100%;
-`;
